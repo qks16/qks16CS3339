@@ -1,5 +1,0 @@
-a.out: source.cpp
-	g++ source.cpp -o a.out
-
-clean:
-	rm -f a.out
