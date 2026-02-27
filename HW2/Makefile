@@ -6,3 +6,4 @@ utils.o: utils.h utils.cpp
 
 clean:
 	rm -f a.out
+	rm -f utils.o
