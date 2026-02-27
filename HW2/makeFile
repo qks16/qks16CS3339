@@ -1,2 +1,2 @@
 all:
-	g++ source.cpp -o
+	g++ source.cpp
