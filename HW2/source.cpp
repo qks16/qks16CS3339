@@ -34,8 +34,8 @@ int main(int argc, char* argv[]) {
         cout << "overflow threshold: " << threshold << endl;
 
         cout << bitset<1>(reinterpret_cast<unsigned long  &>(threshold) >> 31)
-         << bitset<8>((reinterpret_cast<unsigned long&>(threshold) >> 23) & 0xFF)
-         << bitset<23>(reinterpret_cast<unsigned long&>(threshold) & 0x7FFFFF)
+         << " " << bitset<8>((reinterpret_cast<unsigned long&>(threshold) >> 23) & 0xFF)
+         << " " << bitset<23>(reinterpret_cast<unsigned long&>(threshold) & 0x7FFFFF)
          << endl;
     }
     else {
