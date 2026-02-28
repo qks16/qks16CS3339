@@ -1,7 +1,6 @@
 #include <iostream>
 #include <bitset>
 #include <string>
-#include <limits>
 #include <cmath>
 
 #include "utils.h"
@@ -30,7 +29,7 @@ int main(int argc, char* argv[]) {
 
     float threshold = fMinOverflowThreshold(LOOP_BOUND, LOOP_COUNTER);
 
-    if (LOOP_BOUND < threshold) {
+    if (LOOP_COUNTER < threshold) {
         cout << "\nWarning: possible overflow!" << endl;
         cout << "overflow threshold: " << threshold << endl;
 
@@ -41,6 +40,7 @@ int main(int argc, char* argv[]) {
     }
     else {
         cout << "\nThere is no overflow!" << endl;
+        cout << "current threshold: " << threshold << endl;
     }
 
     return 0;

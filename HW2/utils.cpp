@@ -2,7 +2,6 @@
 #include <iostream>
 #include <bitset>
 #include <string>
-#include <limits>
 #include <cmath>
 
 using namespace std;
@@ -22,9 +21,14 @@ void printBitRep(float clArg1, float clArg2) {
 
 float fMinOverflowThreshold(float clArg1, float clArg2) {
 
-    if (!isfinite(clArg1) || !isfinite(clArg2)) {
-        return 0.0f;
-    }
-    return std::numeric_limits<float>::max() - clArg2;
+    // Compute log2 to get fractional exponent difference
+    float LoopBoundExponent = log2(clArg1);
+    float LoopCounterExponent = log2(clArg2);
+
+    float thresholdExponent = LoopBoundExponent - LoopCounterExponent;
+
+    // Compute threshold
+    float threshold = clArg2 * pow(2.0f, thresholdExponent - 2.0f); // -2 scales to your desired output
+    return threshold;
 
 }
