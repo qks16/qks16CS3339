@@ -28,7 +28,8 @@ int main(int argc, char* argv[]) {
 
     float threshold = fMinOverflowThreshold(LOOP_BOUND, LOOP_COUNTER);
 
-    if (LOOP_COUNTER >= threshold) {
+    // we can check if an overflow will occur by comparing the loop-counter value with the threshold value. If the loop-counter value is greater than the threshold value, then an overflow will occur.
+    if (LOOP_COUNTER < threshold) {
         cout << "\nWarning: possible overflow!" << endl;
         cout << "overflow threshold: " << threshold << endl;
 

@@ -6,4 +6,5 @@ void printBitRep(float clArg1, float clArg2); //display the IEEE-formatted 32-bi
 
 float fMinOverflowThreshold(float clArg1, float clArg2); //find the smallest floating-point value for which an increment by the loop-
                                                          //counter value is lost because there aren’t enough bits in the fraction segment.
-#endif // UTILS_H
+
+#endif

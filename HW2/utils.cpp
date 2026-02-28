@@ -25,8 +25,8 @@ float fMinOverflowThreshold(float clArg1, float clArg2) {
     // threshold.
 
     unsigned long loopBoundExponent = (reinterpret_cast<unsigned long&>(clArg1) >> 23) & 0xFF;
-    unsigned long printIntervalExponent = (reinterpret_cast<unsigned long&>(clArg2) >> 23) & 0xFF; 
+    unsigned long loopCounterExponent = (reinterpret_cast<unsigned long&>(clArg2) >> 23) & 0xFF; 
 
-    return static_cast<float>(loopBoundExponent - printIntervalExponent);
+    return static_cast<float>(loopBoundExponent - loopCounterExponent);
 
 }
