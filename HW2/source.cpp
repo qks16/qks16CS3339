@@ -1,6 +1,8 @@
 #include <iostream>
 #include <bitset>
 #include <string>
+#include <limits>
+#include <cmath>
 
 #include "utils.h"
 
@@ -28,12 +30,11 @@ int main(int argc, char* argv[]) {
 
     float threshold = fMinOverflowThreshold(LOOP_BOUND, LOOP_COUNTER);
 
-    // we can check if an overflow will occur by comparing the loop-counter value with the threshold value. If the loop-counter value is greater than the threshold value, then an overflow will occur.
-    if (LOOP_COUNTER < threshold) {
+    if (LOOP_BOUND > threshold) {
         cout << "\nWarning: possible overflow!" << endl;
         cout << "overflow threshold: " << threshold << endl;
 
-        cout << bitset<1>(reinterpret_cast<unsigned long  &>(threshold) >> 31)
+        cout    << bitset<1>(reinterpret_cast<unsigned long  &>(threshold) >> 31)
          << " " << bitset<8>((reinterpret_cast<unsigned long&>(threshold) >> 23) & 0xFF)
          << " " << bitset<23>(reinterpret_cast<unsigned long&>(threshold) & 0x7FFFFF)
          << endl;

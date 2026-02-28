@@ -2,6 +2,8 @@
 #include <iostream>
 #include <bitset>
 #include <string>
+#include <limits>
+#include <cmath>
 
 using namespace std;
 
@@ -12,21 +14,17 @@ void printBitRep(float clArg1, float clArg2) {
          << endl;
 
     cout << "LOOP_COUNTER: " << bitset<1>(reinterpret_cast<unsigned long  &>(clArg2) >> 31)
-         <<                " " << bitset<8>((reinterpret_cast<unsigned long&>(clArg2) >> 23) & 0xFF)
-         <<                " " << bitset<23>(reinterpret_cast<unsigned long&>(clArg2) & 0x7FFFFF)
+         <<              " " << bitset<8>((reinterpret_cast<unsigned long&>(clArg2) >> 23) & 0xFF)
+         <<              " " << bitset<23>(reinterpret_cast<unsigned long&>(clArg2) & 0x7FFFFF)
          << endl;
 
 }
 
 float fMinOverflowThreshold(float clArg1, float clArg2) {
-    // we need only pay attention to the exponent portion of the floating-point representation, and the
-    // threshold value is the difference between the exponents of both the loop-bound and loop-counter. The
-    // resulting-number’s fraction segment is all zeroes, and the corresponding base-10 decimal number is that
-    // threshold.
 
-    unsigned long loopBoundExponent = (reinterpret_cast<unsigned long&>(clArg1) >> 23) & 0xFF;
-    unsigned long loopCounterExponent = (reinterpret_cast<unsigned long&>(clArg2) >> 23) & 0xFF; 
+    if (!isfinite(clArg1) || !isfinite(clArg2))
+        return 0.0f;
 
-    return static_cast<float>(loopBoundExponent - loopCounterExponent);
+    return std::numeric_limits<float>::max() - clArg2;
 
 }
