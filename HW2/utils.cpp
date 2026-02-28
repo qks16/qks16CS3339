@@ -30,12 +30,14 @@ float fMinOverflowThreshold(float clArg1, float clArg2) {
     // Compute threshold
     int thresholdExpInt = static_cast<int>(floor(thresholdExponent));
 
+    // compute biased exponent for IEEE-754
     int bias = 127;
     int rawExp = thresholdExpInt + bias;
 
     if (rawExp <= 0) rawExp = 1;       // avoid denormal
     if (rawExp >= 255) rawExp = 254;   // avoid infinity
 
+    // construct float bits: sign=0, exponent=rawExp, mantissa=0
     uint32_t thresholdBits = static_cast<uint32_t>(rawExp) << 23; // fraction = 0
 
     // reinterpret bits as float (via reference cast)
