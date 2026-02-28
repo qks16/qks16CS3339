@@ -5,7 +5,7 @@ how to compile:
 enter "make" into terminal
 
 how to run:
-enter "./a.out [LOOP_BOUND][LOOP_COUNTER]" into terminnal
+enter "./a.out [LOOP_BOUND] [LOOP_COUNTER]" into terminnal
 
 issues to resolve:
 improve make file compilation
