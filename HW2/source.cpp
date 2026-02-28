@@ -13,14 +13,13 @@ int main(int argc, char* argv[]) {
         cerr << "Too many arguments. Usage: " << argv[0] << " [LOOP_BOUND] [PRINT_INTERVAL]" << endl;
         return 1;
     }
-    else if (argc < 1) {
+    else if (argc < 2) {
         cerr << "Not enough arguments. Usage: " << argv[0] << " [LOOP_BOUND] [PRINT_INTERVAL]" << endl;
         return 1;
     }
 
-    float LOOP_BOUND = argv[1] ? stof(argv[1]) : 1000000000; // Default to 1 billion if no argument is provided
-    unsigned long PRINT_INTERVAL = argv[2] ? stoul(argv[2]) : 100000000; // Default to printing every 100 million iterations
-
+    float LOOP_BOUND = stof(argv[1]);
+    unsigned long PRINT_INTERVAL = stoul(argv[2]);
     float i = 0;
     unsigned j = 0;
 
