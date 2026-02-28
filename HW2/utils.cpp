@@ -17,6 +17,7 @@ void smallProgram(float lb, float pi) {
         i++;
         j++;
 
+        }
     }
 
     // cout << "LOOP_BOUND: " << LOOP_BOUND << endl;
