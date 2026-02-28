@@ -19,7 +19,7 @@ int main(int argc, char* argv[]) {
     }
 
     float LOOP_BOUND = stof(argv[1]);
-    unsigned long PRINT_INTERVAL = stoul(argv[2]);
+    float PRINT_INTERVAL = stof(argv[2]);
 
     //smallProgram(LOOP_BOUND, PRINT_INTERVAL);
     

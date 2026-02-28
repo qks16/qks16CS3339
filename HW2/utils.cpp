@@ -5,13 +5,13 @@
 
 using namespace std;
 
-void smallProgram(float lb, unsigned long pi) {
+void smallProgram(float lb, float pi) {
     float i = 0;
-    unsigned j = 0;
+    float j = 0;
 
     while (i  <= lb) {
         
-        if (j % pi == 0)
+        if (static_cast<unsigned long>(j) % static_cast<unsigned long>(pi) == 0) {
         cout << i << endl;
 
         i++;
