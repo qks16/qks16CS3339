@@ -5,33 +5,28 @@
 
 using namespace std;
 
-void smallProgram(float lb, float pi) {
-    float i = 0;
-    float j = 0;
+void printBitRep(float clArg1, float clArg2) {
+    cout << "LOOP_BOUND: " << bitset<1>(reinterpret_cast<unsigned long  &>(clArg1) >> 31) 
+         <<            " " << bitset<8>((reinterpret_cast<unsigned long&>(clArg1) >> 23) & 0xFF) 
+         <<            " " << bitset<23>(reinterpret_cast<unsigned long&>(clArg1) & 0x7FFFFF)
+         << endl;
 
-    while (i  <= lb) {
-        
-        if (static_cast<unsigned long>(j) % static_cast<unsigned long>(pi) == 0) {
-        cout << i << endl;
+    cout << "PRINT_INTERVAL: " << bitset<1>(reinterpret_cast<unsigned long  &>(clArg2) >> 31)
+         <<                " " << bitset<8>((reinterpret_cast<unsigned long&>(clArg2) >> 23) & 0xFF)
+         <<                " " << bitset<23>(reinterpret_cast<unsigned long&>(clArg2) & 0x7FFFFF)
+         << endl;
 
-        i++;
-        j++;
+}
 
-        }
-    }
+float fMinOverflowThreshold(float clArg1, float clArg2) {
+    // we need only pay attention to the exponent portion of the floating-point representation, and the
+    // threshold value is the difference between the exponents of both the loop-bound and loop-counter. The
+    // resulting-number’s fraction segment is all zeroes, and the corresponding base-10 decimal number is that
+    // threshold.
 
-    // cout << "LOOP_BOUND: " << LOOP_BOUND << endl;
-    // bitset<32> loop_bound_bits(*reinterpret_cast<unsigned long*>(&LOOP_BOUND));
-    // cout << "LOOP_BOUND bits: " << loop_bound_bits << endl;
-    // cout << "Sign bit: " << loop_bound_bits[31] << endl;
-    // cout << "Exponent bits: ";
-    // for (int i = 30; i >= 23; i--) {
-    //     cout << loop_bound_bits[i];
-    // }
-    // cout << endl;
-    // cout << "Significand bits: ";
-    // for (int i = 22; i >= 0; i--) {
-    //     cout << loop_bound_bits[i];
-    // }
-    // cout << endl;
+    unsigned long loopBoundExponent = (reinterpret_cast<unsigned long&>(clArg1) >> 23) & 0xFF;
+    unsigned long printIntervalExponent = (reinterpret_cast<unsigned long&>(clArg2) >> 23) & 0xFF; 
+
+    return static_cast<float>(loopBoundExponent - printIntervalExponent);
+
 }
