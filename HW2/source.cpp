@@ -13,7 +13,7 @@ int main(int argc, char* argv[]) {
         cerr << "Too many arguments. Usage: " << argv[0] << " [LOOP_BOUND] [PRINT_INTERVAL]" << endl;
         return 1;
     }
-    else if (argc < 2) {
+    else if (argc < 3) {
         cerr << "Not enough arguments. Usage: " << argv[0] << " [LOOP_BOUND] [PRINT_INTERVAL]" << endl;
         return 1;
     }
