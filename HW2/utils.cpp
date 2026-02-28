@@ -25,10 +25,22 @@ float fMinOverflowThreshold(float clArg1, float clArg2) {
     float LoopBoundExponent = log2(clArg1);
     float LoopCounterExponent = log2(clArg2);
 
-    float thresholdExponent = LoopBoundExponent - LoopCounterExponent;
+    float thresholdExponent = LoopBoundExponent - LoopCounterExponent -2.0f; // -2 to scale to desired output
 
     // Compute threshold
-    float threshold = clArg2 * pow(2.0f, thresholdExponent - 2.0f); // -2 scales to your desired output
+    int thresholdExpInt = static_cast<int>(floor(thresholdExponent));
+
+    int bias = 127;
+    int rawExp = thresholdExpInt + bias;
+
+    if (rawExp <= 0) rawExp = 1;       // avoid denormal
+    if (rawExp >= 255) rawExp = 254;   // avoid infinity
+
+    uint32_t thresholdBits = static_cast<uint32_t>(rawExp) << 23; // fraction = 0
+
+    // reinterpret bits as float (via reference cast)
+    float threshold = *reinterpret_cast<float*>(&thresholdBits);
+
     return threshold;
 
 }
