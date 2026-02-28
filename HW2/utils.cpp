@@ -22,9 +22,9 @@ void printBitRep(float clArg1, float clArg2) {
 
 float fMinOverflowThreshold(float clArg1, float clArg2) {
 
-    if (!isfinite(clArg1) || !isfinite(clArg2))
+    if (!isfinite(clArg1) || !isfinite(clArg2)) {
         return 0.0f;
-
+    }
     return std::numeric_limits<float>::max() - clArg2;
 
 }
