@@ -30,7 +30,7 @@ int main(int argc, char* argv[]) {
 
     float threshold = fMinOverflowThreshold(LOOP_BOUND, LOOP_COUNTER);
 
-    if (LOOP_COUNTER > threshold) {
+    if (LOOP_BOUND < threshold) {
         cout << "\nWarning: possible overflow!" << endl;
         cout << "overflow threshold: " << threshold << endl;
 
