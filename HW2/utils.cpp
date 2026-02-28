@@ -11,7 +11,7 @@ void printBitRep(float clArg1, float clArg2) {
          <<            " " << bitset<23>(reinterpret_cast<unsigned long&>(clArg1) & 0x7FFFFF)
          << endl;
 
-    cout << "PRINT_INTERVAL: " << bitset<1>(reinterpret_cast<unsigned long  &>(clArg2) >> 31)
+    cout << "LOOP_COUNTER: " << bitset<1>(reinterpret_cast<unsigned long  &>(clArg2) >> 31)
          <<                " " << bitset<8>((reinterpret_cast<unsigned long&>(clArg2) >> 23) & 0xFF)
          <<                " " << bitset<23>(reinterpret_cast<unsigned long&>(clArg2) & 0x7FFFFF)
          << endl;

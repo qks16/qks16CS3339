@@ -28,8 +28,8 @@ int main(int argc, char* argv[]) {
 
     float threshold = fMinOverflowThreshold(LOOP_BOUND, LOOP_COUNTER);
 
-    if (LOOP_COUNTER > threshold) {
-        cout << "Warning: possible overflow!" << endl;
+    if (LOOP_COUNTER >= threshold) {
+        cout << "\nWarning: possible overflow!" << endl;
         cout << "overflow threshold: " << threshold << endl;
 
         cout << bitset<1>(reinterpret_cast<unsigned long  &>(threshold) >> 31)
@@ -38,7 +38,7 @@ int main(int argc, char* argv[]) {
          << endl;
     }
     else {
-        cout << "There is no overflow!" << endl;
+        cout << "\nThere is no overflow!" << endl;
     }
 
     return 0;
