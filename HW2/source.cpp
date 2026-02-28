@@ -20,20 +20,22 @@ int main(int argc, char* argv[]) {
 
     float LOOP_BOUND = stof(argv[1]);
     unsigned long PRINT_INTERVAL = stoul(argv[2]);
-    float i = 0;
-    unsigned j = 0;
 
-    // while (i  <= LOOP_BOUND) {
-        
-    //     if (j % PRINT_INTERVAL == 0)
-    //     cout << i << endl;
-
-    //     i++;
-    //     j++;
-
-    // }
-
-    smallProgram(LOOP_BOUND);
+    //smallProgram(LOOP_BOUND, PRINT_INTERVAL);
     
+    //output the IEEE-formatted 32-bit representation of both LOOP_BOUND and PRINT_INTERVAL, using the bitset class to display the bits,
+    //separating the sign bit, exponent bits, and significand bits with spaces for readability by bit manipulation.
+
+    cout << "LOOP_BOUND: " << bitset<1>(reinterpret_cast<unsigned long&>(LOOP_BOUND) >> 31) 
+         <<            " " << bitset<8>((reinterpret_cast<unsigned long&>(LOOP_BOUND) >> 23) & 0xFF) 
+         <<            " " << bitset<23>(reinterpret_cast<unsigned long&>(LOOP_BOUND) & 0x7FFFFF)
+         << endl;
+    
+    cout << "PRINT_INTERVAL: " << bitset<1>(reinterpret_cast<unsigned long&>(PRINT_INTERVAL) >> 31)
+         <<            " " << bitset<8>((reinterpret_cast<unsigned long&>(PRINT_INTERVAL) >> 23) & 0xFF)
+         <<            " " << bitset<23>(reinterpret_cast<unsigned long&>(PRINT_INTERVAL) & 0x7FFFFF)
+         << endl;
+    
+
     return 0;
 }
