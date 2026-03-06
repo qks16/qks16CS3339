@@ -6,17 +6,11 @@
 
 using namespace std;
 
-void printBitRep(float clArg1, float clArg2) {
-    cout << "LOOP_BOUND: " << bitset<1>(reinterpret_cast<unsigned long  &>(clArg1) >> 31) 
-         <<            " " << bitset<8>((reinterpret_cast<unsigned long&>(clArg1) >> 23) & 0xFF) 
-         <<            " " << bitset<23>(reinterpret_cast<unsigned long&>(clArg1) & 0x7FFFFF)
-         << endl;
-
-    cout << "LOOP_COUNTER: " << bitset<1>(reinterpret_cast<unsigned long  &>(clArg2) >> 31)
-         <<              " " << bitset<8>((reinterpret_cast<unsigned long&>(clArg2) >> 23) & 0xFF)
-         <<              " " << bitset<23>(reinterpret_cast<unsigned long&>(clArg2) & 0x7FFFFF)
-         << endl;
-
+void displayBits(float value) {
+    cout   << bitset<1>(reinterpret_cast<unsigned long&>(value) >> 31)
+    << " " << bitset<8>((reinterpret_cast<unsigned long&>(value) >> 23) & 0xFF)
+    << " " << bitset<23>(reinterpret_cast<unsigned long&>(value) & 0x7FFFFF)
+    << endl;
 }
 
 float fMinOverflowThreshold(float clArg1, float clArg2) {

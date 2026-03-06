@@ -23,7 +23,9 @@ int main(int argc, char* argv[]) {
     float LOOP_COUNTER = stof(argv[2]);
 
     //display the IEEE-formatted 32-bit representation of both LOOP_BOUND and PRINT_INTERVAL using printBitRep
-    printBitRep(LOOP_BOUND, LOOP_COUNTER);
+    cout << "LOOP_BOUND: " << displayBits(LOOP_BOUND) << endl;
+
+    cout << "LOOP_COUNTER: " << displayBits(LOOP_COUNTER) << endl;
 
     //display a message saying if an overflow will occur, find minOverflowThreshold and display it
 
@@ -33,10 +35,7 @@ int main(int argc, char* argv[]) {
         cout << "\nWarning: possible overflow!" << endl;
         cout << "overflow threshold: " << threshold << endl;
 
-        cout    << bitset<1>(reinterpret_cast<unsigned long  &>(threshold) >> 31)
-         << " " << bitset<8>((reinterpret_cast<unsigned long&>(threshold) >> 23) & 0xFF)
-         << " " << bitset<23>(reinterpret_cast<unsigned long&>(threshold) & 0x7FFFFF)
-         << endl;
+        displayBits(threshold);
     }
     else {
         cout << "\nThere is no overflow!" << endl;
