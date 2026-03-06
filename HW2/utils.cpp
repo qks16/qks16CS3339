@@ -41,7 +41,7 @@ float fMinOverflowThreshold(float clArg1, float clArg2) {
     if (rawExp <= 0) rawExp = 1;       // avoid denormal
     if (rawExp >= 255) rawExp = 254;   // avoid infinity
 
-    // construct float bits: sign=0, exponent=rawExp, mantissa=0
+    // construct float bits
     uint32_t thresholdBits = static_cast<uint32_t>(rawExp) << 23;
 
     // reinterpret as float

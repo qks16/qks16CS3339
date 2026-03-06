@@ -8,8 +8,6 @@ how to run:
 enter "./a.out [LOOP_BOUND] [LOOP_COUNTER]" into terminnal
 
 issues to resolve:
-improve make file compilation
 fix second input test error
 add comments to improve clarity
 add output styling
-rewrite bitRep to work for only one argument instead of two and use it twice in source.cpp to display bits
