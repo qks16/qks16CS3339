@@ -14,7 +14,7 @@ void displayBits(float value) {
 }
 
 float fMinOverflowThreshold(float clArg1, float clArg2) {
-
+/*
     // Compute log2 to get fractional exponent difference
     float LoopBoundExponent = log2(clArg1);
     float LoopCounterExponent = log2(clArg2);
@@ -35,6 +35,37 @@ float fMinOverflowThreshold(float clArg1, float clArg2) {
     uint32_t thresholdBits = static_cast<uint32_t>(rawExp) << 23; // fraction = 0
 
     // reinterpret bits as float (via reference cast)
+    float threshold = *reinterpret_cast<float*>(&thresholdBits);
+
+    return threshold; */
+
+    // reinterpret floats as integer bit patterns
+    uint32_t bits1 = *reinterpret_cast<uint32_t*>(&clArg1);
+    uint32_t bits2 = *reinterpret_cast<uint32_t*>(&clArg2);
+
+    // extract exponent bits
+    std::bitset<8> expBits1((bits1 >> 23) & 0xFF);
+    std::bitset<8> expBits2((bits2 >> 23) & 0xFF);
+
+    int bias = 127;
+
+    // convert to actual exponent values
+    int LoopBoundExponent = expBits1.to_ulong() - bias;
+    int LoopCounterExponent = expBits2.to_ulong() - bias;
+
+    // compute threshold exponent
+    int thresholdExponent = LoopBoundExponent - LoopCounterExponent - 2;
+
+    // compute biased exponent
+    int rawExp = thresholdExponent + bias;
+
+    if (rawExp <= 0) rawExp = 1;       // avoid denormal
+    if (rawExp >= 255) rawExp = 254;   // avoid infinity
+
+    // construct float bits: sign=0, exponent=rawExp, mantissa=0
+    uint32_t thresholdBits = static_cast<uint32_t>(rawExp) << 23;
+
+    // reinterpret as float
     float threshold = *reinterpret_cast<float*>(&thresholdBits);
 
     return threshold;
