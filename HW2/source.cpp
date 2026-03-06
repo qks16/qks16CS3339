@@ -22,7 +22,7 @@ int main(int argc, char* argv[]) {
     float LOOP_BOUND = stof(argv[1]);
     float LOOP_COUNTER = stof(argv[2]);
 
-    //display the IEEE-formatted 32-bit representation of both LOOP_BOUND and PRINT_INTERVAL using printBitRep
+    //display the IEEE-formatted 32-bit representation of both LOOP_BOUND and PRINT_INTERVAL using displayBits()
     cout << "LOOP_BOUND: "; displayBits(LOOP_BOUND);
 
     cout << "LOOP_COUNTER: "; displayBits(LOOP_COUNTER);
@@ -39,7 +39,6 @@ int main(int argc, char* argv[]) {
     }
     else {
         cout << "\nThere is no overflow!" << endl;
-        cout << "current threshold: " << threshold << endl;
     }
 
     return 0;

@@ -1,13 +1,11 @@
 # qks16CS3339
 HW2 info
 
-how to compile:
-enter "make" into terminal
+how to compile and run(what to enter in terminal):
+make
 
-how to run:
-enter "./a.out [LOOP_BOUND] [LOOP_COUNTER]" into terminnal
+./a.out [LOOP_BOUND] [LOOP_COUNTER]
 
-issues to resolve:
-fix second input test error
+TODO:
 add comments to improve clarity
 add output styling
