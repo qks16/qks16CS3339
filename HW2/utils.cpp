@@ -33,7 +33,7 @@ float fMinOverflowThreshold(float clArg1, float clArg2) {
     int offset = LoopBoundExponent - 2*LoopCounterExponent - 23;
 
     // compute threshold exponent
-    int thresholdExponent = LoopBoundExponent - LoopCounterExponent - offset;
+    int thresholdExponent = LoopBoundExponent - LoopCounterExponent - offset + 1;
 
     // compute biased exponent
     int rawExp = thresholdExponent + bias;
