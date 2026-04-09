@@ -1,9 +1,9 @@
-a.out: source.cpp utils.o
-	g++ -Wall -O3 source.cpp utils.o
+a.out: source.cpp cache.o
+	g++ -Wall -O3 source.cpp cache.o
 
-utils.o: utils.h utils.cpp
-	g++ -Wall -c -O3 utils.cpp
+cache.o: cache.h cache.cpp
+	g++ -Wall -c -O3 cache.cpp
 
 clean:
 	rm -f a.out
-	rm -f utils.o
+	rm -f cache.o
