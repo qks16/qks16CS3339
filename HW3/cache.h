@@ -1,5 +1,5 @@
-#ifndef UTILS_H
-#define UTILS_H
+#ifndef CACHE_H
+#define CACHE_H
 
 #include <vector>
 #include <cstdint>

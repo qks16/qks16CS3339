@@ -12,7 +12,7 @@ words, hits and misses will be determined by simply analyzing the memory address
 #include <string>
 #include <cmath>
 
-#include "utils.h"
+#include "cache.h"
 
 using namespace std;
 
