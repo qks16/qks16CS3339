@@ -27,6 +27,10 @@ int main(int argc, char*argv[]) {
   cout << "Associativity: " << assoc << endl;
   cout << "Input File Name: " << input_filename << endl;
 
+  //determine output file name based on input file name
+  string output_filename = input_filename.substr(0, input_filename.find_last_of('.')) + "_output.txt";
+  cout << "Output File Name: " << output_filename << endl;
+
   cout << "Simulating cache behavior..." << endl;
 
   ifstream inputFile(input_filename);
@@ -37,7 +41,7 @@ int main(int argc, char*argv[]) {
 
   Cache cache(entries, assoc);
 
-  ofstream outputFile("cache_sim_output.txt");
+  ofstream outputFile(output_filename);
 
     if (!outputFile.is_open()) {
         cerr << "Error: Could not open output file." << endl;
