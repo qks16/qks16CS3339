@@ -1,5 +1,6 @@
 #include<iostream>
 #include<fstream>
+#include<cmath>
 
 using namespace std;
 
@@ -64,7 +65,7 @@ public:
     return (addr / 4) % num_sets; // Assuming block size of 4 bytes
   }
   int get_tag(unsigned long addr) {
-    return (addr / 4) / num_sets; // Assuming block size of 4 bytes
+    return addr / (4 * num_sets); // Assuming block size of 4 bytes
   }
 
   unsigned long retrieve_addr(int way, int index) {
