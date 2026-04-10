@@ -9,7 +9,11 @@
 class Cache {
 public:
     //constructor to initialize cache parameters and data structures
-    Cache(size_t numEntries, size_t associativity);
+    Cache(size_t numEntries, size_t associativity) : numEntries(numEntries), associativity(associativity) {
+        numSets = numEntries / associativity;
+        blockOffsetBits = log2(numSets);
+        cacheLines.resize(numEntries);
+    }
 
     //function to access the cache with a given memory address and return whether it's a hit or miss
     bool access(uint32_t address);
