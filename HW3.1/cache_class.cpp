@@ -5,7 +5,12 @@ using namespace std;
 
 class Entry {
 public:
-  Entry();
+  Entry(){
+    //testing case with initialized values
+    valid = false;
+    tag = 0;
+    ref = 0;
+  }
   //~Entry();
 
   void display(ofstream& outfile) {
@@ -110,5 +115,5 @@ private:
   int assoc;
   unsigned num_entries;
   int num_sets;
-  Entry **entries;
+  Entry** entries;
 };
