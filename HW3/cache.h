@@ -14,6 +14,10 @@ public:
     //function to access the cache with a given memory address and return whether it's a hit or miss
     bool access(uint32_t address);
 
+    //function to update the cache line on a miss using FIFO replacement policy
+    void updateCacheLine(uint32_t address);
+
+
 private:
     struct CacheLine {
         bool valid = false;
@@ -24,6 +28,7 @@ private:
     size_t blockOffsetBits;
     size_t associativity;
     std::vector<CacheLine> cacheLines;
+    
 };
 
 #endif
