@@ -6,7 +6,7 @@ using namespace std;
 class Entry {
 public:
   Entry();
-  ~Entry();
+  //~Entry();
 
   void display(ofstream& outfile) {
     outfile << "Tag: " << tag << ", Valid: " << valid << ", Ref: " << ref << endl;
