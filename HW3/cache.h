@@ -3,6 +3,7 @@
 
 #include <vector>
 #include <cstdint>
+#include <cstddef>
 
 //cache data structure
 class Cache {
