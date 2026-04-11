@@ -78,11 +78,11 @@ public:
     for (int way = 0; way < assoc; way++) {
       if (entries[index][way].get_valid() && entries[index][way].get_tag() == tag) {
         entries[index][way].set_ref(1); // Set reference bit on hit
-        outfile << "HIT: Address " << addr << " found in cache." << endl;
+        outfile << addr << " : HIT" << endl;
         return true;
       }
     }
-    outfile << "MISS: Address " << addr << " not found in cache." << endl;
+    outfile << addr << " : MISS" << endl;
     return false;
   }
 
@@ -94,7 +94,10 @@ public:
         entries[index][way].set_valid(true);
         entries[index][way].set_tag(tag);
         entries[index][way].set_ref(1); // Set reference bit on update
-        outfile << "Updated cache with address " << addt << " at index " << index << ", way " << way << "." << endl;
+
+        //uncomment for testing
+        //outfile << "Updated cache with address " << addt << " at index " << index << ", way " << way << "." << endl;
+
         return;
       }
     }
@@ -105,11 +108,18 @@ public:
         lru_way = way;
       }
     }
-    outfile << "Evicting address " << retrieve_addr(lru_way, index) << " from cache." << endl;
+
+    //uncomment for testing
+    //outfile << "Evicting address " << retrieve_addr(lru_way, index) << " from cache." << endl;
+
     entries[index][lru_way].set_valid(true);
     entries[index][lru_way].set_tag(tag);
     entries[index][lru_way].set_ref(1); // Set reference bit on update
-    outfile << "Updated cache with address " << addt << " at index " << index << ", way " << lru_way << "." << endl;
+
+
+    //uncomment for testing
+    //outfile << "Updated cache with address " << addt << " at index " << index << ", way " << lru_way << "." << endl;
+
   }
   
 private:

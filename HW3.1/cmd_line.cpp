@@ -28,7 +28,7 @@ int main(int argc, char*argv[]) {
   cout << "Input File Name: " << input_filename << endl;
 
   //determine output file name based on input file name
-  string output_filename = input_filename.substr(0, input_filename.find_last_of('_')) + "_output.txt";
+  string output_filename = input_filename.substr(0, input_filename.find_last_of('_')) + "_output";
   cout << "Output File Name: " << output_filename << endl;
 
   cout << "Simulating cache behavior..." << endl;
