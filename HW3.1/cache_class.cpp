@@ -35,7 +35,7 @@ private:
 
 class Cache {
 public:
-  Cache(int numEntries, int associativity) : num_entries(numEntries), assoc(associativity) {
+  Cache(int numEntries, int associativity) : num_entries(numEntries), assoc(associativity), counter(0) {
     num_sets = num_entries / assoc;
     entries = new Entry*[num_sets];
     for (int i = 0; i < num_sets; i++) {
@@ -77,7 +77,9 @@ public:
     int tag = get_tag(addr);
     for (int way = 0; way < assoc; way++) {
       if (entries[index][way].get_valid() && entries[index][way].get_tag() == tag) {
-        entries[index][way].set_ref(1); // Set reference bit on hit
+
+        counter++;
+        entries[index][way].set_ref(counter); // Set reference bit on hit
         outfile << addr << " : HIT" << endl;
         return true;
       }
@@ -93,7 +95,9 @@ public:
       if (!entries[index][way].get_valid()) {
         entries[index][way].set_valid(true);
         entries[index][way].set_tag(tag);
-        entries[index][way].set_ref(1); // Set reference bit on update
+
+        counter++;
+        entries[index][way].set_ref(counter); // Set reference bit on update
 
         //uncomment for testing
         //outfile << "Updated cache with address " << addt << " at index " << index << ", way " << way << "." << endl;
@@ -114,7 +118,9 @@ public:
 
     entries[index][lru_way].set_valid(true);
     entries[index][lru_way].set_tag(tag);
-    entries[index][lru_way].set_ref(1); // Set reference bit on update
+
+    counter++;
+    entries[index][lru_way].set_ref(counter); // Set reference bit on update
 
 
     //uncomment for testing
@@ -126,5 +132,6 @@ private:
   int assoc;
   unsigned num_entries;
   int num_sets;
+  unsigned counter; // for LRU replacement policy
   Entry** entries;
 };
