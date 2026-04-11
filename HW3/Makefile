@@ -1,9 +1,16 @@
-a.out: source.cpp cache.o
-	g++ -Wall -O3 source.cpp cache.o
+cache: cmd_line.cpp cache_class.o
+	g++ -Wall -O3 cmd_line.cpp cache_class.o -o cache
 
-cache.o: cache.h cache.cpp
-	g++ -Wall -c -O3 cache.cpp
+cache_class.o: cache_class.cpp
+	g++ -Wall -c -O3 cache_class.cpp
+
+file_process: fileio.cpp
+	g++ -Wall -O3 fileio.cpp -o file_process
 
 clean:
-	rm -f a.out
-	rm -f cache.o
+	rm -f cache
+	rm -f cache_class.o
+	rm -f file_process
+
+clean_files:
+	rm -f input0_output input0_output.txt
