@@ -1,12 +1,12 @@
 # qks16CS3339
-HW2 info
+HW3 info
 
 how to compile and run(what to enter in terminal):
 
-make
+make file_processes
 
-./a.out [LOOP_BOUND] [LOOP_COUNTER]
+make cache 
 
-TODO:
-add comments to improve clarity
-add output styling
+./file_process [FILENAME]
+
+./cache [NUM_ENTRIES] [ASSOCIATIVITY] [FILENAME + "_input"]
