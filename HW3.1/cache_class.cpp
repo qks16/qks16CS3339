@@ -62,14 +62,14 @@ public:
 
 
   int get_index(unsigned long addr) {
-    return (addr / 4) % num_sets; // Assuming block size of 4 bytes
+    return (addr) % num_sets; // Assuming block size of 4 bytes
   }
   int get_tag(unsigned long addr) {
-    return addr / (4 * num_sets); // Assuming block size of 4 bytes
+    return addr / (num_sets); // Assuming block size of 4 bytes
   }
 
   unsigned long retrieve_addr(int way, int index) {
-    return (entries[index][way].get_tag() * num_sets + index) * 4; // Assuming block size of 4 bytes
+    return (entries[index][way].get_tag() * num_sets + index); // Assuming block size of 4 bytes
   }
   
   bool hit(ofstream& outfile, unsigned long addr){

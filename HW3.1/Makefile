@@ -11,3 +11,6 @@ clean:
 	rm -f cache
 	rm -f cache_class.o
 	rm -f file_process
+
+clean_files:
+	rm -f input0_output input0_output.txt
